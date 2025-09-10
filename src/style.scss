@@ -1,0 +1,118 @@
+@import 'bootstrap/dist/css/bootstrap.min.css';
+@import 'bootstrap-icons/font/bootstrap-icons.css';
+
+
+*{
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+}
+
+::after, ::before{
+    box-sizing: border-box;
+}
+
+html, body{
+    height: 100%;
+    width: 100%;
+}
+
+body{
+    width: 100%;
+}
+
+::selection{
+    background: rgb(228,75,71);
+    color: rgb(255,255,255);
+}
+
+::-moz-selection{
+    background: rgb(228,75,71);
+    color: rgb(255,255,255);
+}
+
+::-webkit-selection{
+        background: rgb(228,75,71);
+    color: rgb(255,255,255);
+}
+
+::-ms-selection{
+        background: rgb(228,75,71);
+    color: rgb(255,255,255);
+}
+::-o-selection{
+        background: rgb(228,75,71);
+    color: rgb(255,255,255);
+}
+
+.container-otp{
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    .otp-box{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 20px;
+        gap: 20px;
+        input{
+            width: 6%;
+            height: 50px;
+            border-radius: 6px;
+            background: transparent;
+            border: solid 1px #dedede;
+            font-size: 1.5rem;
+            text-align: center;
+            color: #fff;
+        }
+    }
+}
+
+// @media (min-width: 320px) {
+//   body {
+//     background: blue;
+//   }
+// }
+
+// @media (max-width: 768px) {
+//   body {
+//     background: red;
+//   }
+// }
+
+.modal-overlay{
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+  .modal-content{
+      background: #fff;
+  padding: 2rem;
+  border-radius: 12px;
+  position: relative;
+  max-width: 500px;
+  width: 100%;
+  .modal-close{
+      position: absolute;
+  top: 12px;
+  right: 16px;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  }
+  }
+}
+.info-login{
+    background: url('./assets/body-bg.jpeg') no-repeat;
+    background-attachment: fixed;
+    object-fit: cover;
+    background-size: cover;
+}
