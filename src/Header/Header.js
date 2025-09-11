@@ -64,7 +64,11 @@ const Header = () => {
                                     </Link>
                                 </li>
                                 <li>
-                                    <Link to="/jsfunctions" className='font-medium text-gray-50 hover:text-orange-400'>JS Functions</Link>
+                                    <Link to="/jsfunctions" className='font-medium text-gray-50 hover:text-orange-400'>
+                                    JS Functions</Link>
+                                </li>
+                                <li>
+                                    <Link to='/postquery' className='font-medium text-gray-50 hover:text-orange-400'>RTK</Link>
                                 </li>
                             </ul>
                         </div>

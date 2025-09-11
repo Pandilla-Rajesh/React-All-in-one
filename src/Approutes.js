@@ -11,6 +11,7 @@ import ToDoList from './Components/ToDoList/ToDoList'
 import JsFunctions from './Components/JsFunctions/JsFunctions'
 import Navbar from './NavBar'
 import Login from './Components/Login/Login'
+import PostsQuery from './Components/PostsQuery/PostsQuery'
 
 const MainLayout = lazy(()=>import('./MainLaout/MainLayout'))
 const SignIn = lazy(()=>import('./Components/SignIn/SignIn'))
@@ -36,7 +37,8 @@ function Approutes(){
             {path:'todo', element:(<Suspense fallback={<div>...Loading</div>}><ToDoList/></Suspense>)},
             {path:'axiosfetch', element:(<Suspense fallback={<div>...Loading</div>}><AxiosFetch/></Suspense>)},
             {path:'reusecounter', element:(<Suspense fallback={<div>...Loading</div>}><ReUseCounter/></Suspense>)},
-            {path:'jsfunctions', element:(<Suspense fallback={<div>...Loading</div>}><JsFunctions/></Suspense>)}
+            {path:'jsfunctions', element:(<Suspense fallback={<div>...Loading</div>}><JsFunctions/></Suspense>)},
+            {path:'postquery', element:(<Suspense fallback={<div>...Loading</div>}><PostsQuery/></Suspense>)}
         ]
     }
     ])

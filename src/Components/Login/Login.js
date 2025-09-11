@@ -106,14 +106,14 @@ const handleSubmit=async(e)=>{
                      <label className='block mb-2' htmlFor='email'>
                         <span className="after:content-['*'] after:ml-0.5 after:text-red-700
                          text-slate-50 font-bold text-sm">
-                           Email
+                           Username
                         </span>
                         <div className='my-2'>
                            <input type="text" name='email' value={login.email} placeholder='Enter Email'
                             onChange={handleChange} autoComplete='off'
                            className={`border border-red-600 w-full text-slate-50 rounded text-sm px-3 py-2 bg-transparent
                            ${error.email? 'border-red-600 ring ring-red-600' : 'border-gray-500'}`} />
-                           <p>{error.email && <small className='text-sm text-red-600'>{error.email}</small>}</p>
+                           <p>{error.email && <small className='text-sm text-red-300'>{error.email}</small>}</p>
                         </div>
                      </label>
                   </div>
@@ -134,7 +134,7 @@ const handleSubmit=async(e)=>{
                                 {showPassword ?  <i class="bi bi-eye"></i> :  <i class="bi bi-eye-slash"></i>}
                               </span>
                            </div>
-         <p>{error.password && <small className='text-sm text-red-600'>{error.password}</small>}</p>
+         <p>{error.password && <small className='text-sm text-red-300'>{error.password}</small>}</p>
 
                         </div>
                      </label>
@@ -146,7 +146,7 @@ const handleSubmit=async(e)=>{
                      onChange={handleChange} value={login.rememberMe}
                      className='ms-2 bg-transparent'  />
                   </div>
-                      <p>{error.rememberMe && <small className='text-sm text-red-600'>{error.rememberMe}</small>}</p>
+                      <p>{error.rememberMe && <small className='text-sm text-red-300'>{error.rememberMe}</small>}</p>
                   <div className='w-100 d-flex justify-content-center mt-2'>
                     <button type='submit' disabled={loading}
                     className='text-sm bg-gradient-to-tr from-red-700 to-red-950
