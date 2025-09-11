@@ -1,3 +1,4 @@
+import axios from 'axios'
 import React, { Fragment, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
@@ -25,7 +26,7 @@ const handleChange=(e)=>{
    console.log(login, 'login details binded');
 }
 
-const handleSubmit=(e)=>{
+const handleSubmit=async(e)=>{
    e.preventDefault()
    // alert(JSON.stringify(login, null, 1))
    const errors = {}
@@ -48,17 +49,42 @@ const handleSubmit=(e)=>{
       errors.rememberMe = 'You must check Remember Me before continuing'
    }
 
-   if(Object.keys(errors).length === 0){
+   if(Object.keys(errors).length > 0){
      setTimeout(()=>{
-      setLoading(false)
-      navigate('/home')
-     })
-   }else{
       setError(errors)
       setLoading(false)
+     }, 1000)
    }
-setLogin({ email: '', password: '', rememberMe:false })
 
+   try{
+
+      const response = await axios.post('https://dummyjson.com/auth/login',{
+         username: login.email,
+         password:login.password,
+      })
+
+      console.log('Login Sucess', response.data)
+
+      if(login.rememberMe){
+         localStorage.setItem('token', response.data.token)
+      }else{
+         sessionStorage.setItem('token', response.data.token)
+      }
+
+      setLoading(false)
+      navigate('/home')
+
+   }catch(error){
+      setLoading(false)
+      if(error.response && error.response.data?.message){
+         setError({api:error.response.data.message})
+      }else{
+         setError({api:'Something went wrong. Please try again later.'})
+      }
+   }finally{
+      setLoading(false)
+      setLogin({ email: '', password: '', rememberMe:false })
+   }
 }
 
     return(
