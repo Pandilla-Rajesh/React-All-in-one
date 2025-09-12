@@ -7,7 +7,7 @@ const MainLayout=()=>{
 
     return(
        <main>
-           <header>
+           <header className='sticky top-0'>
                <Header/>
            </header>
            <Outlet/>

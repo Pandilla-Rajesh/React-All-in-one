@@ -27,19 +27,19 @@ useEffect(()=>{
 getData()
 },[])
 
-const postData = async()=>{
+    const postData = async()=>{
 
-setLoading(true)
-try{
-const res = await axios.post('https://dummyjson.com/posts/')
-setData((prevData) => ([...prevData, res.data.posts]))
-console.log(res.data.posts, 'post data retrive')
-}catch(err){
-console.log(err)
-}finally{
-setLoading(false)
-}
-}
+    setLoading(true)
+    try{
+    const res = await axios.post('https://dummyjson.com/posts/')
+    setData((prevData) => ([...prevData, res.data.posts]))
+    console.log(res.data.posts, 'post data retrive')
+    }catch(err){
+    console.log(err)
+    }finally{
+    setLoading(false)
+    }
+    }
 
 useEffect(()=>{
 postData()
