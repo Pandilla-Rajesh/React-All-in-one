@@ -16,6 +16,7 @@ import PostsQuery from './Components/PostsQuery/PostsQuery'
 const MainLayout = lazy(()=>import('./MainLaout/MainLayout'))
 const SignIn = lazy(()=>import('./Components/SignIn/SignIn'))
 const Register = lazy(()=>import('./Components/Register/Register'))
+const CustomData = lazy(()=>import('./Components/CustomHooks/CustomData'))
 
 
 function Approutes(){
@@ -38,7 +39,8 @@ function Approutes(){
             {path:'axiosfetch', element:(<Suspense fallback={<div>...Loading</div>}><AxiosFetch/></Suspense>)},
             {path:'reusecounter', element:(<Suspense fallback={<div>...Loading</div>}><ReUseCounter/></Suspense>)},
             {path:'jsfunctions', element:(<Suspense fallback={<div>...Loading</div>}><JsFunctions/></Suspense>)},
-            {path:'postquery', element:(<Suspense fallback={<div>...Loading</div>}><PostsQuery/></Suspense>)}
+            {path:'postquery', element:(<Suspense fallback={<div>...Loading</div>}><PostsQuery/></Suspense>)},
+            {path:'custom', element:(<Suspense fallback={<div>...Loading</div>}><CustomData/></Suspense>)}
         ]
     }
     ])

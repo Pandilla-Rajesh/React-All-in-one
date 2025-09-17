@@ -59,8 +59,8 @@ const handleSubmit=async(e)=>{
    try{
 
       const response = await axios.post('https://dummyjson.com/auth/login',{
-         username: login.email,
-         password:login.password,
+         username: login.email, //emilys//
+         password:login.password, //emilyspass//
       })
 
       console.log('Login Sucess', response.data)
@@ -128,7 +128,8 @@ const handleSubmit=async(e)=>{
                            <div className='flex items-center relative w-full'>
                               <input type={showPassword? 'text' : 'password'} name='password' value={login.password} 
                               placeholder='Enter Password' onChange={handleChange}
-                              className='border border-red-600 w-full text-slate-50 rounded px-3 py-2 bg-transparent' />
+                              className={`border border-red-600 w-full text-slate-50 rounded px-3 py-2 bg-transparent
+                              ${error.password ? 'border-red-500 ring ring-red-700' : 'border-gray-600'}`} />
                               <span onClick={toggleVisible} 
                               className=' absolute right-3 top-1/2 text-slate-50 cursor-pointer -translate-y-1/2'>
                                 {showPassword ?  <i class="bi bi-eye"></i> :  <i class="bi bi-eye-slash"></i>}

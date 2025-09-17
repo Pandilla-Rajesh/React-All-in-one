@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, NavLink } from 'react-router-dom'
 
 const Header = () => {
 
@@ -27,12 +27,13 @@ const Header = () => {
         <article>
             <section>
                 <nav className='bg-gray-900 text-white'>
-                    <div className='container-fluid mx-auto flex items-center justify-between px-4 py-3'>
+                    <div className='container-fluid mx-auto flex items-center justify-between px-3'>
                         <div className='xl:max-w-max'>
                             <a href="#" className='text-2xl font-bold'>React AllinOne</a>
                         </div>
                         <div className='relative'>
-                            <button onClick={() => setIsOpen(!isOpen)} className='text-gray-50 lg:hidden focus:outline-none'>
+                            <button onClick={() => setIsOpen(!isOpen)} 
+                            className='text-gray-50 lg:hidden focus:outline-none'>
                                 {isOpen ? (
                                     <>
                                         <i class="bi bi-list"></i>
@@ -47,29 +48,24 @@ const Header = () => {
                         </div>
                         <div className={`lg:flex ${isOpen ? 'hidden' : 'block'} w-full lg:w-auto max-xl:w-full`}>
                             <ul className='lg:flex space-y-3 lg:space-y-0 space-x-3 mt-0 lg:mt-0 w-full max-xl:w-full'>
-                                <li>
-                                    <Link to="/home" className='text-gray-50 hover:text-orange-400 font-medium'>Home</Link>
-                                </li>
-                                <li>
-                                    <Link to="/todo" className='text-gray-50 hover:text-orange-400 font-medium'>ToDoList</Link>
-                                </li>
-                                <li>
-                                    <Link to="/axiosfetch" className='text-green-50 hover:text-orange-400 font-medium'>
-                                        AxiosFetch
-                                    </Link>
-                                </li>
-                                <li>
-                                    <Link to="/reusecounter" className='font-medium text-green-50 hover:text-orange-400'>
-                                        ReUseCounter
-                                    </Link>
-                                </li>
-                                <li>
-                                    <Link to="/jsfunctions" className='font-medium text-gray-50 hover:text-orange-400'>
-                                    JS Functions</Link>
-                                </li>
-                                <li>
-                                    <Link to='/postquery' className='font-medium text-gray-50 hover:text-orange-400'>RTK</Link>
-                                </li>
+                                    <NavLink to="/home" 
+                                    className={({isActive})=>`text-gray-50 hover:bg-orange-400 
+                                   hover:transition ease-in-out duration-300 p-3
+                                    ${isActive? 'bg-orange-600' : ''}`}>
+                                        Home
+                                    </NavLink>
+                                <NavLink to="/todo" className={({isActive})=>`text-gray-50 hover:bg-orange-400
+                                p-3 ${isActive ? 'bg-orange-600' : ""}`}>ToDoList</NavLink>
+                                <NavLink to="/axiosfetch" className={({isActive})=>`text-gray-50 hover:bg-orange-400
+                                px-3 py-3 ${isActive? 'bg-orange-700' : ''}`}>AxiosFetch</NavLink>
+                                <NavLink to="/reusecounter" className={({isActive})=>`text-gray-50 hover:bg-orange-400
+                                px-3 py-3 ${isActive? "bg-orange-700" : ''}`}>ReUseCounter</NavLink>
+                               <NavLink to="/jsfunctions" className={({isActive})=>`text-gray-50 hover:bg-orange-400
+                               px-3 py-3 ${isActive ? 'bg-orange-700' : ''}`}>JS Functions</NavLink>
+                               <NavLink to="/postquery" className={({isActive})=>`text-gray-50 hover:bg-orange-400
+                               px-3 py-3 ${isActive ? 'bg-orange-700' : ''}`}>RTK</NavLink>
+                               <NavLink to="/custom" className={({isActive})=>`text-gray-50 hover:bg-orange-400
+                               px-3 py-3 ${isActive ? 'bg-orange-700' : ''}`}>Custom Hook</NavLink>
                             </ul>
                         </div>
                     </div>

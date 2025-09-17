@@ -1,13 +1,20 @@
-import { configureStore } from '@reduxjs/toolkit'
+import { combineReducers, configureStore, createStore } from '@reduxjs/toolkit'
 import React from 'react'
 import { PostsApi } from './Services/PostsApi/PostsApi'
+import Counter from './Components/ReducerUse/ReducerUse'
+import CounterReducer from './Components/ReducerUse/CounterReducer'
+
+const rootReducer = combineReducers({
+  Counter: CounterReducer,
+  [PostsApi.reducerPath]: PostsApi.reducer
+})
+
 
 export const store = configureStore({
-  reducer: {
-    [PostsApi.reducerPath]: PostsApi.reducer
-  }, 
+  reducer:rootReducer, CounterReducer,
   middleware: (getDefaultMiddilware)=>
     getDefaultMiddilware().concat(PostsApi.middleware)
 })
+
 
 export default store
