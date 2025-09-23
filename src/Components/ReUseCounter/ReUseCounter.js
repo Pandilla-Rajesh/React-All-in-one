@@ -100,7 +100,9 @@ const handleClick = useCallback(()=>{
                        <div className='border border-gray-400 text-center my-4 p-4'>
                            <h2 className='font-bold text-2xl mb-4'>Show the Content Show more Show less</h2>
                            <div className='bg-gray-500 text-gray-50 p-4 overflow-hidden transition-all rounded-lg'>
-                              <p style={{maxHeight: isExpand ? '500px' : '100px', whiteSpace:'pre-line', textAlign:'left'}}>{content}</p>
+                              <p style={{maxHeight: isExpand ? '500px' : '100px', whiteSpace:'pre-line', textAlign:'left'}}>
+                                {content}
+                                </p>
                            </div>
                             <div className='my-2'>
                                     <button className='bg-blue-400 bg-gradient-to-r from-blue-400 to-blue-950

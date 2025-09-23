@@ -12,6 +12,7 @@ import JsFunctions from './Components/JsFunctions/JsFunctions'
 import Navbar from './NavBar'
 import Login from './Components/Login/Login'
 import PostsQuery from './Components/PostsQuery/PostsQuery'
+import NoDataFound from './NoDataFound'
 
 const MainLayout = lazy(()=>import('./MainLaout/MainLayout'))
 const SignIn = lazy(()=>import('./Components/SignIn/SignIn'))
@@ -42,7 +43,8 @@ function Approutes(){
             {path:'postquery', element:(<Suspense fallback={<div>...Loading</div>}><PostsQuery/></Suspense>)},
             {path:'custom', element:(<Suspense fallback={<div>...Loading</div>}><CustomData/></Suspense>)}
         ]
-    }
+    },
+    {path:'*', element:(<Suspense fallback={<div>...Loading</div>}><NoDataFound/></Suspense>)}
     ])
 
     return(<Suspense fallback={<div>...Loading</div>}><RouterProvider router={router} /></Suspense>)
