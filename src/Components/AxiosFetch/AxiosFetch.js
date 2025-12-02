@@ -16,7 +16,7 @@ const AxiosFetch = () => {
 
             const res = await axios.get('https://dummyjson.com/posts')
             setData(res.data.posts)
-            console.log(res.data.posts)
+            console.log(res.data.posts, 'axios product details')
 
         } catch(error) {
             console.log(error)
@@ -114,6 +114,52 @@ const AxiosFetch = () => {
             <section>
                 <div className='container'>
                     <div className='row flex items-center justify-center g-0'>
+
+                        <div className=" col-span-12 text-center py-5 ">
+                            <h2 className="text-5xl text-green-700 font-bold mb-3">Product Details Shown</h2>
+                            <div className="table-responsive">
+                                { loading ? (
+                                    <tr key="">
+                                        <td colSpan={ 5 }>
+                                            <p>No Data Found</p>
+                                        </td>
+                                    </tr>
+                                ) : (
+                                    <table className=" table table-bordered">
+                                        <thead>
+                                            <tr key="">
+                                                <th>Id</th>
+                                                <th>User Id</th>
+                                                <th>User Title</th>
+                                                <th>User Body</th>
+                                                <th>Posts</th>
+                                                <th>LiKES</th>
+                                                <th>Views</th>
+                                                <th>Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            { product?.length > 0 ? (
+                                                product.slice(0, 20)?.map((pro, index) => (
+                                                    <tr key={ index + 1 }>
+                                                        <td>{ pro.id }</td>
+                                                        <td>{ pro.userId }</td>
+                                                        <td>{ pro.title }</td>
+                                                        <td>{ pro.title }</td>
+                                                    </tr>
+                                                ))
+                                            ) : (
+                                                <tr key="index">
+                                                    <td colSpan={ 5 }>
+                                                        <p>No Data Found</p>
+                                                    </td>
+                                                </tr>
+                                            ) }
+                                        </tbody>
+                                    </table>
+                                ) }
+                            </div>
+                        </div>
 
                         <div className='col-auto px-2 py-5'>
                             <h2 className='text-5xl font-bold text-gray-100 dark:text-white text-orange-500 pb-2 px-2'>
