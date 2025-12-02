@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useEffect, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 
 const useFetch = (url) => {
 
@@ -7,7 +7,7 @@ const useFetch = (url) => {
     const [loading, setLoading] = useState(false)
     const [error, setError] = useState(null)
 
-    const fetchCustomData = async () => {
+    const fetchCustomData = useCallback(async () => {
         setLoading(true)
         try {
             const res = await axios.get(url)
@@ -20,12 +20,13 @@ const useFetch = (url) => {
             setLoading(false)
         }
     }
+    )
 
     useEffect(() => {
-        fetchCustomData()
-    }, [])
+        fetchCustomData();
+    }, [fetchCustomData]);
 
-    return { data, loading, error }
+    return { data, loading, error, refetch: fetchCustomData }
 }
 
 export default useFetch
