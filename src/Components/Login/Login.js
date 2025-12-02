@@ -106,7 +106,7 @@ const Login = () => {
                               <label className='block mb-2' htmlFor='email'>
                                  <span className="after:content-['*'] after:ml-0.5 after:text-red-700
                          text-slate-50 font-bold text-sm">
-                                    Username rajesh
+                                    Username
                                  </span>
                                  <div className='my-2'>
                                     <input type="text" name='email' value={ login.email } placeholder='Enter Email'
