@@ -1,4 +1,4 @@
-import axios from 'axios'
+import axios from "axios";
 import React, { useCallback, useEffect, useState } from 'react'
 import LifeCycleMethods from '../LifeCycleMethods/LifeCycleMethods'
 

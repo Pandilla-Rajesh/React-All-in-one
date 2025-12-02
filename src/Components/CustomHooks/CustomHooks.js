@@ -1,4 +1,5 @@
-import React, { useEffect, useState, axios } from 'react'
+import axios from "axios";
+import React, { useEffect, useState } from 'react'
 
 const useFetch = (url) => {
 
