@@ -19,8 +19,7 @@ const useFetch = (url) => {
         } finally {
             setLoading(false)
         }
-    }
-    )
+    }, [url])
 
     useEffect(() => {
         fetchCustomData();
