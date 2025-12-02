@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react'
+import React, { useState } from 'react'
 import useFetch from './CustomHooks'
 
 const CustomData = () => {
@@ -16,21 +16,21 @@ const CustomData = () => {
     //         post.userId.toString().includes(query.toLowerCase())
     // }, [query])
 
-    const filterData = data?.filter(useCallback = (post) => (
-        post.title.toLowerCase().includes(query.toLowerCase()) ||
-        post.userId.toString().includes(query.toLowerCase()) ||
-        post.id.toString().includes(query.toLowerCase())
-    ))
-
-    // const filterData = useCallback(() => {
-    //   return data?.filter((post) =>
+    // const filterData = data?.filter( = (post) => (
     //     post.title.toLowerCase().includes(query.toLowerCase()) ||
     //     post.userId.toString().includes(query.toLowerCase()) ||
     //     post.id.toString().includes(query.toLowerCase())
-    //   );
-    // }, [data, query]);
+    // ))
 
-    const filteredResults = filterData();
+    const filterData = (() => {
+        return data?.filter((post) =>
+            post.title.toLowerCase().includes(query.toLowerCase()) ||
+            post.userId.toString().includes(query.toLowerCase()) ||
+            post.id.toString().includes(query.toLowerCase())
+        );
+    }, [data, query]);
+
+    // const filteredResults = filterData();
 
     const handleSubmit = (e) => {
         e.preventDefault()

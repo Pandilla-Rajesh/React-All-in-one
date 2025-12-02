@@ -178,7 +178,7 @@ const ToDoList = () => {
       <section>
         <div className='container'>
           <div className="row g-0 flex items-center justify-center">
-            { product?.length > 0 ? (
+            { loading?.length > 0 ? (
               <div className="grid grid-cols-4 lg:grid-cols-4 md:grid-cols-4 sm:grid-cols-1 max-xl:grid-cols-1 gap-2">
                 { product.slice(0, 10).map((pro, index) => (
                   <div className='bg-green-50 rounded-lg p-4 mb-2'>

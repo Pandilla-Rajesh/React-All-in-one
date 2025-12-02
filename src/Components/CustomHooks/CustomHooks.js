@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 
 const useFetch = (url) => {
 
@@ -7,14 +7,14 @@ const useFetch = (url) => {
     const [loading, setLoading] = useState(false)
     const [error, setError] = useState(null)
 
-    const fetchCustomData = async() => {
+    const fetchCustomData = async () => {
         setLoading(true)
         try {
             const res = await axios.get(url)
             const result = await res.data
             setData(result)
             console.log(result, 'custom hook data displayed')
-        } catch (error) {
+        } catch(error) {
             setError(error)
         } finally {
             setLoading(false)
