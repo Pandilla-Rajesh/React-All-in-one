@@ -1,7 +1,5 @@
-import { hover } from '@testing-library/user-event/dist/hover'
 import axios from 'axios'
 import React, { useEffect, useRef, useState } from 'react'
-import { Form } from 'react-router-dom'
 
 const JsFunctions = () => {
 
@@ -12,23 +10,23 @@ const JsFunctions = () => {
     const [isHovered, setIsHovered] = useState(false)
     const hoverref = useRef(null)
 
-    const handleMouseHover=()=>{
+    const handleMouseHover = () => {
         setIsHovered(true)
     }
 
-    const handleMouseOut = ()=>{
+    const handleMouseOut = () => {
         setIsHovered(false)
     }
 
-    useEffect(()=>{
+    useEffect(() => {
         const node = hoverref.current
 
-        if(node){
+        if(node) {
             node.addEventListener('mouse hover', handleMouseHover)
             node.removeEventListener('mouse out', handleMouseOut)
         }
 
-        return () =>{
+        return () => {
             node.removeEventListener('mouse hover', handleMouseHover)
             node.removeEventListener('mouse out', handleMouseOut)
         }
@@ -49,7 +47,7 @@ const JsFunctions = () => {
             setCountry(response.data)
             console.log(response.data, 'all countries included')
 
-        } catch (error) {
+        } catch(error) {
             console.log(error)
         } finally {
             setLoading(false)
@@ -67,30 +65,30 @@ const JsFunctions = () => {
             })
     }, [])
 
-   useEffect(() => {
-  const fetchCountries = async () => {
-    try {
-      const res = await fetch('https://restcountries.com/v3.1/all')
-      const data = await res.json()
-      if (Array.isArray(data)) {
-        setCountry(data)
-        const result = data.filter(c => c.region === "Asia")
-        console.log(result)
-      } else {
-        console.error("Unexpected data:", data)
-      }
-    } catch (err) {
-      console.error(err)
-    }
-  }
-  fetchCountries()
-}, [])
+    useEffect(() => {
+        const fetchCountries = async () => {
+            try {
+                const res = await fetch('https://restcountries.com/v3.1/all')
+                const data = await res.json()
+                if(Array.isArray(data)) {
+                    setCountry(data)
+                    const result = data.filter(c => c.region === "Asia")
+                    console.log(result)
+                } else {
+                    console.error("Unexpected data:", data)
+                }
+            } catch(err) {
+                console.error(err)
+            }
+        }
+        fetchCountries()
+    }, [])
 
     const handleCountryChange = (e) => {
         setSelectCountry(e.target.value)
     }
 
-    
+
 
     return (
 
@@ -109,10 +107,10 @@ const JsFunctions = () => {
                             </h2>
                             <div className='bg-slate-800 rounded-xl p-3 mb-4'>
                                 <h3 className='text-3xl text-center font-semibold text-gray-50'>
-                                    {evename}
+                                    { evename }
                                 </h3>
                             </div>
-                            <div onClick={handleName}>
+                            <div onClick={ handleName }>
                                 <ul className='list-disc list-inside border px-4 py-2 rounded-lg shadow-sm cursor-pointer'>
                                     <li>Sathyanarayana</li>
                                     <li>Anasurya</li>
@@ -124,65 +122,65 @@ const JsFunctions = () => {
                             </div>
                         </div>
 
-                        {/* rest-countries */}
+                        {/* rest-countries */ }
                         <div className='bg-gray-50 p-4 rounded-lg shadow-sm hover:shadow-lg transition-xl'>
                             <h2 className='text-xl text-center font-semibold text-gray-800 mb-4'>
                                 Welcome to RestCountry Select
                             </h2>
                             <form>
-                                <select className='form-select mb-4' onChange={handleCountryChange} value={selectcountry}>
+                                <select className='form-select mb-4' onChange={ handleCountryChange } value={ selectcountry }>
                                     <option value="" key="">Selected Country</option>
-                                    {country.length > 0 && country.map((country) => (
-                                        <option key={country.cca3} value={country.name.common}>
-                                            {country.name.common}
+                                    { country.length > 0 && country.map((country) => (
+                                        <option key={ country.cca3 } value={ country.name.common }>
+                                            { country.name.common }
                                         </option>
-                                    ))}
+                                    )) }
                                 </select>
-                                {selectcountry && (
+                                { selectcountry && (
                                     <div className='bg-orange-500 p-4 rounded-lg'>
                                         <h3 className='text-2xl text-white font-semibold text-center'>
-                                            {selectcountry}
+                                            { selectcountry }
                                         </h3>
                                     </div>
-                                )}
+                                ) }
                             </form>
                         </div>
-                        {/* end */}
+                        {/* end */ }
 
                         <div className='bg-slate-50 rounded-lg shadow-lg hover:shadow-sm p-4'>
                             <h2 className='text-xl font-bold text-center text-gray-800 mb-4'>
                                 Welcome RestAPI With try catch method
                             </h2>
                             <form>
-                                <select className='form-select mb-4' onChange={handleCountryChange} value={selectcountry}>
+                                <select className='form-select mb-4' onChange={ handleCountryChange } value={ selectcountry }>
                                     <option value="" key="">Select Country</option>
-                                    {!loading ? (
+                                    { !loading ? (
                                         <>
-                                            {country?.length > 0 ? (
+                                            { country?.length > 0 ? (
                                                 country.slice(0, 10).map((list) => (
-                                                    <option value={list.name.common} key={list.cca2}>
-                                                        {list.name.common}
+                                                    <option value={ list.name.common } key={ list.cca2 }>
+                                                        { list.name.common }
                                                     </option>
                                                 ))
                                             ) : (
                                                 <option disabled>No countries found</option>
-                                            )}
+                                            ) }
                                         </>
                                     ) : (
                                         <option disabled>Loading...</option>
-                                    )}
+                                    ) }
                                 </select>
-                                {selectcountry ? (
+                                { selectcountry ? (
                                     <>
                                         <article className='bg-pink-700 text-gray-50 p-4 rounded-lg'>
-                                            <h4 className='font-bold text-xl'>{selectcountry}</h4>
+                                            <h4 className='font-bold text-xl'>{ selectcountry }</h4>
                                         </article>
                                     </>
                                 ) : (
                                     <>
                                         <p>Data not Loading</p>
                                     </>
-                                )}
+                                ) }
                             </form>
                         </div>
 
@@ -190,10 +188,10 @@ const JsFunctions = () => {
                             <h2 className='text-xl font-bold text-gray-800 text-center'>
                                 Mouse Hover Effect
                             </h2>
-                            <div ref={hoverref} className={`${isHovered ? 'bg-blue-800' : 'bg-green-700'} cursor-pointer`}>
+                            <div ref={ hoverref } className={ `${isHovered ? 'bg-blue-800' : 'bg-green-700'} cursor-pointer` }>
                                 <h5 className='text-xl font-semibold text-gray-50'>Hover Effect</h5>
                             </div>
-                            {isHovered && <p>Hover content</p>}
+                            { isHovered && <p>Hover content</p> }
                         </div>
 
                     </div>

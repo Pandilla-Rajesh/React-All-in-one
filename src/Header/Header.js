@@ -29,12 +29,13 @@ const Header = () => {
                 <nav className='bg-gray-900 text-white'>
                     <div className='container-fluid mx-auto flex items-center justify-between px-3'>
                         <div className='xl:max-w-max'>
-                            <a href="#" className='text-2xl font-bold'>React AllinOne</a>
+                            <Link className='text-2xl font-bold'>React AllinOne</Link>
+                            {/* <a href="#" className='text-2xl font-bold'>React AllinOne</a> */ }
                         </div>
                         <div className='relative'>
-                            <button onClick={() => setIsOpen(!isOpen)} 
-                            className='text-gray-50 lg:hidden focus:outline-none'>
-                                {isOpen ? (
+                            <button onClick={ () => setIsOpen(!isOpen) }
+                                className='text-gray-50 lg:hidden focus:outline-none'>
+                                { isOpen ? (
                                     <>
                                         <i class="bi bi-list"></i>
                                     </>
@@ -43,29 +44,29 @@ const Header = () => {
                                         <div className=' absolute right-0'>
                                             <i class="bi bi-x-lg"></i>
                                         </div>
-                                    )}
+                                    ) }
                             </button>
                         </div>
-                        <div className={`lg:flex ${isOpen ? 'hidden' : 'block'} w-full lg:w-auto max-xl:w-full`}>
+                        <div className={ `lg:flex ${isOpen ? 'hidden' : 'block'} w-full lg:w-auto max-xl:w-full` }>
                             <ul className='lg:flex space-y-3 lg:space-y-0 space-x-3 mt-0 lg:mt-0 w-full max-xl:w-full'>
-                                    <NavLink to="/home" 
-                                    className={({isActive})=>`text-gray-50 hover:bg-orange-400 
+                                <NavLink to="/home"
+                                    className={ ({ isActive }) => `text-gray-50 hover:bg-orange-400 
                                    hover:transition ease-in-out duration-300 p-2 m-0
-                                    ${isActive? 'bg-orange-600' : ''}`}>
-                                        Home
-                                    </NavLink>
-                                <NavLink to="/todo" className={({isActive})=>`text-gray-50 hover:bg-orange-400
-                                p-2 m-0 ${isActive ? 'bg-orange-600' : ""}`}>ToDoList</NavLink>
-                                <NavLink to="/axiosfetch" className={({isActive})=>`text-gray-50 hover:bg-orange-400
-                                p-2 m-0 ${isActive? 'bg-orange-700' : ''}`}>AxiosFetch</NavLink>
-                                <NavLink to="/reusecounter" className={({isActive})=>`text-gray-50 hover:bg-orange-400
-                                p-2 m-0 ${isActive? "bg-orange-700" : ''}`}>ReUseCounter</NavLink>
-                               <NavLink to="/jsfunctions" className={({isActive})=>`text-gray-50 hover:bg-orange-400
-                               p-2 m-0 ${isActive ? 'bg-orange-700' : ''}`}>JS Functions</NavLink>
-                               <NavLink to="/postquery" className={({isActive})=>`text-gray-50 hover:bg-orange-400
-                               p-2 m-0 ${isActive ? 'bg-orange-700' : ''}`}>RTK</NavLink>
-                               <NavLink to="/custom" className={({isActive})=>`text-gray-50 hover:bg-orange-400
-                               p-2 m-0 ${isActive ? 'bg-orange-700' : ''}`}>Custom Hook</NavLink>
+                                    ${isActive ? 'bg-orange-600' : ''}` }>
+                                    Home
+                                </NavLink>
+                                <NavLink to="/todo" className={ ({ isActive }) => `text-gray-50 hover:bg-orange-400
+                                p-2 m-0 ${isActive ? 'bg-orange-600' : ""}` }>ToDoList</NavLink>
+                                <NavLink to="/axiosfetch" className={ ({ isActive }) => `text-gray-50 hover:bg-orange-400
+                                p-2 m-0 ${isActive ? 'bg-orange-700' : ''}` }>AxiosFetch</NavLink>
+                                <NavLink to="/reusecounter" className={ ({ isActive }) => `text-gray-50 hover:bg-orange-400
+                                p-2 m-0 ${isActive ? "bg-orange-700" : ''}` }>ReUseCounter</NavLink>
+                                <NavLink to="/jsfunctions" className={ ({ isActive }) => `text-gray-50 hover:bg-orange-400
+                               p-2 m-0 ${isActive ? 'bg-orange-700' : ''}` }>JS Functions</NavLink>
+                                <NavLink to="/postquery" className={ ({ isActive }) => `text-gray-50 hover:bg-orange-400
+                               p-2 m-0 ${isActive ? 'bg-orange-700' : ''}` }>RTK</NavLink>
+                                <NavLink to="/custom" className={ ({ isActive }) => `text-gray-50 hover:bg-orange-400
+                               p-2 m-0 ${isActive ? 'bg-orange-700' : ''}` }>Custom Hook</NavLink>
                             </ul>
                         </div>
                     </div>

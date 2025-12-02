@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 
-const OtpInput=({size=6})=>{
+const OtpInput = ({ size = 6 }) => {
 
     /**
      * 1.Forward Functionality
@@ -10,23 +10,30 @@ const OtpInput=({size=6})=>{
      * 3.Arrow functionality
      */
 
-    const [inputValues, setInputValues] = useState(()=>{
+    const [inputValues, setInputValues] = useState(() => {
         return new Array(size).fill('');
     })
 
+    const handleValues = () => {
+        setInputValues('')
+    }
+
     console.log(inputValues)
 
-    return(
+    return (
         <>
-           <section className='h-full'>
+            <section className='h-full'>
                 <div className='container-otp'>
                     <div className='otp-box'>
-                        {inputValues.map((inputValue, index)=>{
-                            return <input key={index.toString()} value={inputValue} />
-                        })}
+                        { inputValues.map((inputValue, index) => {
+                            return <input key={ index.toString() } value={ inputValue } />
+                        }) }
+                        <div>
+                            <input type="text" value={ inputValues } onChange={ handleValues } />
+                        </div>
                     </div>
                 </div>
-           </section>
+            </section>
         </>
     )
 }

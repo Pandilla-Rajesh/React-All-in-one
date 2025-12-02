@@ -1,31 +1,30 @@
-import axios from 'axios'
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, axios } from 'react'
 
-const useFetch=(url)=>{
+const useFetch = (url) => {
 
     const [data, setData] = useState(null)
-    const [loading, setLoading] = useState(true)
+    const [loading, setLoading] = useState(false)
     const [error, setError] = useState(null)
 
-    const fetchCustomData= async()=>{
+    const fetchCustomData = async() => {
         setLoading(true)
-        try{
+        try {
             const res = await axios.get(url)
             const result = await res.data
             setData(result)
             console.log(result, 'custom hook data displayed')
-        }catch(error){
+        } catch (error) {
             setError(error)
-        }finally{
+        } finally {
             setLoading(false)
         }
     }
 
-    useEffect(()=>{
+    useEffect(() => {
         fetchCustomData()
     }, [url])
 
-    return {data, loading, error}
+    return { data, loading, error }
 }
 
 export default useFetch

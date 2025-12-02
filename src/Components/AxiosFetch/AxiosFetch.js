@@ -1,10 +1,11 @@
 import axios from 'axios'
-import React, { useEffect, useState } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import LifeCycleMethods from '../LifeCycleMethods/LifeCycleMethods'
 
 const AxiosFetch = () => {
 
     const [data, setData] = useState([])
+    const [product, setProduct] = useState([])
     const [loading, setLoading] = useState(false)
 
     const getData = async () => {
@@ -17,7 +18,7 @@ const AxiosFetch = () => {
             setData(res.data.posts)
             console.log(res.data.posts)
 
-        } catch (error) {
+        } catch(error) {
             console.log(error)
         } finally {
             setLoading(false)
@@ -35,7 +36,7 @@ const AxiosFetch = () => {
             const res = await axios.post('https://dummyjson.com/posts/')
             setData((prevData) => ([...prevData, res.data.posts]))
             console.log(res.data.posts, 'post data retrive')
-        } catch (err) {
+        } catch(err) {
             console.log(err)
         } finally {
             setLoading(false)
@@ -57,6 +58,45 @@ const AxiosFetch = () => {
             })
     }, [])
 
+    useEffect(() => {
+        async function getPro() {
+            setLoading(true)
+            try {
+
+                const res = await fetch('https://fakestoreapi.com/products')
+                const respro = await res.json()
+                setProduct(respro)
+                console.log(respro, 'get product details')
+
+            } catch(err) {
+                console.log(err)
+            } finally {
+                setLoading(false)
+            }
+        }
+        getPro()
+    }, [])
+
+    const getProduct = useCallback(async () => {
+        setLoading(true)
+        try {
+
+            const res = await fetch('https://jsonplaceholder.typicode.com/todos')
+            const response = await res.json()
+            setProduct(response)
+            console.log(response, 'get pro details')
+
+        } catch(err) {
+            console.error(err)
+        } finally {
+            setLoading(false)
+        }
+    }, [])
+
+    useEffect(() => {
+        getProduct()
+    }, [getProduct])
+
     return (
         <>
 
@@ -64,7 +104,7 @@ const AxiosFetch = () => {
                 <article className='container'>
                     <div className='row'>
                         <div className="col-lg-12">
-                            <LifeCycleMethods/>
+                            <LifeCycleMethods />
                         </div>
                     </div>
                 </article>
@@ -87,7 +127,7 @@ const AxiosFetch = () => {
                                         <div className='py-0'>
                                             <h3 className='text-2xl font-bold mb-3'>React Axios API Calls</h3></div>
                                         <div className='table-responsive'>
-                                            {loading ? (
+                                            { loading ? (
                                                 <p>Loading</p>
                                             ) : (
                                                 <>
@@ -105,31 +145,31 @@ const AxiosFetch = () => {
                                                             </tr>
                                                         </thead>
                                                         <tbody>
-                                                            {data?.length > 0 && data.slice(0, 5)?.map((post, id) => (
-                                                                <tr key={id}>
-                                                                    <td>{post.id}</td>
-                                                                    <td>{post.userId}</td>
-                                                                    <td>{post.title}</td>
-                                                                    <td>{post.body.slice(0)}</td>
+                                                            { data?.length > 0 && data.slice(0, 5)?.map((post, id) => (
+                                                                <tr key={ id }>
+                                                                    <td>{ post.id }</td>
+                                                                    <td>{ post.userId }</td>
+                                                                    <td>{ post.title }</td>
+                                                                    <td>{ post.body.slice(0) }</td>
                                                                     <td>
                                                                         <ul className='list-disc'>
-                                                                            {Object.entries(post.reactions).map(([reactionType, count]) => (
-                                                                                <li key={reactionType}>
-                                                                                    {reactionType.charAt(0).toUpperCase() + reactionType.slice(0)} {count}
+                                                                            { Object.entries(post.reactions).map(([reactionType, count]) => (
+                                                                                <li key={ reactionType }>
+                                                                                    { reactionType.charAt(0).toUpperCase() + reactionType.slice(0) } { count }
                                                                                 </li>
-                                                                            ))}
+                                                                            )) }
                                                                         </ul>
                                                                     </td>
                                                                     <td>
                                                                         <ul className='list-disc'>
-                                                                            {Object.keys(post.tags).map((el) => (
-                                                                                <li key={el}>
-                                                                                    {typeof post.tags[el] == 'object' ? JSON.stringify(post.tags[el]) : post.tags[el]}
+                                                                            { Object.keys(post.tags).map((el) => (
+                                                                                <li key={ el }>
+                                                                                    { typeof post.tags[el] == 'object' ? JSON.stringify(post.tags[el]) : post.tags[el] }
                                                                                 </li>
-                                                                            ))}
+                                                                            )) }
                                                                         </ul>
                                                                     </td>
-                                                                    <td>{post.views}</td>
+                                                                    <td>{ post.views }</td>
                                                                     <td className='flex items-center justify-center gap-3'>
                                                                         <div className=' flex gap-3'>
                                                                             <button className='btn bg-slate-700 text-gray-100 font-bold'>Edit</button>
@@ -137,13 +177,13 @@ const AxiosFetch = () => {
                                                                         </div>
                                                                     </td>
                                                                 </tr>
-                                                            ))}
+                                                            )) }
                                                         </tbody>
                                                     </table>
                                                 </>
-                                            )}
+                                            ) }
                                             <div>
-                                                <button onClick={postHandle} className='btn btn-primary
+                                                <button onClick={ postHandle } className='btn btn-primary
                                                  border-t-neutral-800'>PostData</button>
                                             </div>
                                         </div>

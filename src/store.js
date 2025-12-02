@@ -1,7 +1,6 @@
-import { combineReducers, configureStore, createStore } from '@reduxjs/toolkit'
-import React from 'react'
+import { combineReducers, configureStore } from '@reduxjs/toolkit'
 import { PostsApi } from './Services/PostsApi/PostsApi'
-import Counter from './Components/ReducerUse/ReducerUse'
+// import Counter from './Components/ReducerUse/ReducerUse'
 import CounterReducer from './Components/ReducerUse/CounterReducer'
 
 const rootReducer = combineReducers({
@@ -11,8 +10,8 @@ const rootReducer = combineReducers({
 
 
 export const store = configureStore({
-  reducer:rootReducer, CounterReducer,
-  middleware: (getDefaultMiddilware)=>
+  reducer: rootReducer, CounterReducer,
+  middleware: (getDefaultMiddilware) =>
     getDefaultMiddilware().concat(PostsApi.middleware)
 })
 
