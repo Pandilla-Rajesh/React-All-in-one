@@ -23,7 +23,7 @@ const useFetch = (url) => {
 
     useEffect(() => {
         fetchCustomData()
-    }, [url])
+    }, [])
 
     return { data, loading, error }
 }

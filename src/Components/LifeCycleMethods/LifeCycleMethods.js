@@ -8,7 +8,7 @@ const LifeCycleMethods = () => {
     // Mount //
     useEffect(() => {
         console.log(count, 'mounted');
-    }, [])
+    }, [count])
 
     // end //
 
