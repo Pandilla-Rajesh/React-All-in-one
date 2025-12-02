@@ -98,7 +98,7 @@ const Login = () => {
                            <div className='text-slate-50 text-7xl mb-3'><i class="bi bi-person-circle"></i></div>
                            <div className='w-full mb-4 rounded'>
                               <h5 className='text-center text-white border-b-8 rounded bg-gradient-to-tr p-2
-                            from-red-600 to-red-900 pb-2 border-red-900 font-bold text-2xl'>Sign in data</h5>
+                            from-red-600 to-red-900 pb-2 border-red-900 font-bold text-2xl'>Sign in</h5>
                            </div>
                         </div>
                         <form onSubmit={ handleSubmit }>
@@ -106,7 +106,7 @@ const Login = () => {
                               <label className='block mb-2' htmlFor='email'>
                                  <span className="after:content-['*'] after:ml-0.5 after:text-red-700
                          text-slate-50 font-bold text-sm">
-                                    Username
+                                    Username rajesh
                                  </span>
                                  <div className='my-2'>
                                     <input type="text" name='email' value={ login.email } placeholder='Enter Email'
