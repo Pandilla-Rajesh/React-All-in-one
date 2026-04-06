@@ -1,11 +1,44 @@
 import React, { useEffect, useState } from 'react'
+import ToDos from '../ToDos/ToDos'
 
 const ToDoList = () => {
 
   const [product, setProduct] = useState([])
   const [users, setUsers] = useState([])
+  const [todos, setTodos] = useState([])
+  const [search, setSearch] = useState('')
   const [loading, setLoading] = useState(false)
   const [toggle, setToggle] = useState(false)
+
+
+  const getTodo = async () => {
+
+    setLoading(true)
+
+    try {
+
+      const resTodo = await fetch('https://dummyjson.com/todos')
+      const response = await resTodo.json()
+      setTodos(response.todos)
+      console.log(response.todos, 'get todo list api')
+
+    } catch(err) {
+      console.log(err)
+    } finally {
+      setLoading(false)
+    }
+
+  }
+
+  const filterTodo = todos.filter((todo) =>
+    todo.id.toString().includes(search.toLowerCase()) ||
+    todo.todo.toLowerCase().includes(search.toLowerCase()) ||
+    todo.userId.toString().includes(search.toLowerCase)
+  )
+
+  const handleSearch = (e) => {
+    setSearch(e.target.value)
+  }
 
   const getUser = async () => {
 
@@ -24,8 +57,13 @@ const ToDoList = () => {
     }
   }
 
+
   useEffect(() => {
     getUser()
+  }, [])
+
+  useEffect(() => {
+    getTodo()
   }, [])
 
   const tasks = {
@@ -45,8 +83,10 @@ const ToDoList = () => {
       'Apply WCAG accessibility best practices',
     ],
     completed: [
-      'Set up project repo and boilerplate',
-      'Installed dependencies (React, Tailwind, Lenis)'
+      'Promise.then()',
+      'Promise.catch()',
+      'Promise.finally()',
+      'queueMicrotask'
     ]
   }
 
@@ -61,9 +101,62 @@ const ToDoList = () => {
 
   return (
     <>
-
-      <section className='bg-cyan-100 p-5'>
+      <section className='bg-cyan-100 my-4'>
+        <ToDos />
         <article className='container mx-auto'>
+
+          <div className='grid grid-cols-1'>
+            <div className='bg-orange-500 p-2 rounded shadow-lg'>
+              <h2 className='text-2xl text-center text-white font-bold'>Welcome to the todo list</h2>
+            </div>
+            <div className=' flex items-center justify-end gap-2 my-3'>
+              <h2>Todo List Search</h2>
+              <form action="" className='w-1/3'>
+                <input type="text" onChange={ handleSearch } placeholder='Search'
+                  className=' rounded-lg shadow-sm p-2 block w-full' />
+
+              </form>
+            </div>
+            <div className=' relative overflow-x-auto bg-neutral-100 shadow-sm rounded-base border border-slate-600'>
+              <table className=' w-full text-left rtl:text-right text-body'>
+                <thead className=' bg-white text-sm text-body border border-slate-300 rounded-base'>
+                  <tr className='border border-slate-600'>
+                    <th scope='col' className='px-3 py-3'>Id</th>
+                    <th scope='col' className='px-3 py-3'>Todo</th>
+                    <th scope='col' className='px-3 py-3'>userId</th>
+                    <th scope='col' className='px-3 py-3'>Completed</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  { loading ? (
+                    <tr>
+                      <td colSpan="5">
+                        <p>No Data found</p>
+                      </td>
+                    </tr>
+                  ) : (
+                    filterTodo.length > 0 ? (
+                      filterTodo.slice(0, 20)?.map((todos, index) => (
+                        <tr key={ index } className=' border border-slate-600'>
+                          <td className='px-3 py-3'>{ todos.id }</td>
+                          <td className='px-3 py-3'>{ todos.todo }</td>
+                          <td className='px-3 py-3'>{ todos.userId }</td>
+                          <td className='px-3 py-3'>{ todos.completed }</td>
+                        </tr>
+                      ))
+                    ) : (
+                      <tr>
+                        <td colSpan="4" className='p-3'>
+                          <p className=' text-center font-bold'>No Data Found</p>
+                        </td>
+                      </tr>
+                    )
+                  ) }
+                </tbody>
+              </table>
+            </div>
+          </div>
+
           <div className='grid grid-cols-1'>
             <h2 className='text-center text-3xl font-bold '>Welcome to user list
               with show ? hide the data
@@ -76,11 +169,19 @@ const ToDoList = () => {
                 { toggle ? 'hide user' : 'show user' }
               </button>
               { toggle && (
-                <ul className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-4 bg-white p-4'>
+                <ul className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-4 bg-white p-4'>
                   { users?.map((user, index) =>
-                    <li key={ index } className='p-4 border rounded bg-gray-100'>
-                      <p>Name: { user.username }</p>
-                      <p>Email: { user.email }</p>
+                    <li key={ index } className='p-2 border rounded bg-gray-100'>
+                      <div className='flex items-center justify-between'>
+                        <div>
+                          <p>Name: { user.username }</p>
+                        </div>
+                        <div className='flex'>
+                          <p>
+                            <span>Email:</span>
+                            { user.email }</p>
+                        </div>
+                      </div>
                     </li>
                   ) }
                 </ul>
@@ -127,7 +228,7 @@ const ToDoList = () => {
       <section>
         <article className='container gap-0'>
           <aside className='flex items-center justify-center'>
-            <div className='grid grid-cols-2 lg:grid-cols-2 md:grid-cols-2 xl:max-sm:grid-cols-1 max-xl:grid-cols-1 gap-3 sm:grid-cols-1 min-w-full w-full'>
+            <div className='grid grid-cols-1 lg:grid-cols-3 md:grid-cols-3 xl:max-sm:grid-cols-1 max-xl:grid-cols-1 gap-3 sm:grid-cols-1 min-w-full w-full'>
 
               <div className='bg-slate-50 p-4 rounded-lg shadow-sm transition-xl my-8'>
                 <div className='max-w-xl mx-auto'>
@@ -170,6 +271,28 @@ const ToDoList = () => {
                 </div>
               </div>
 
+              <div className=' bg-slate-50 p-4 my-8 rounded-lg shadow-sm'>
+                <div className=' max-w-xl mx-auto'>
+                  <h2 className=' text-slate-800 text-2xl font-bold'>
+                    Task List in Completed
+                  </h2>
+                  <div className='mb-4'>
+                    <h3 className='text-xl text-cyan-600 font-bold my-2'>Completed</h3>
+                    <ul className='list-inside'>
+                      { tasks.completed.map((task, index) => {
+                        const comId = `task${index}`
+                        return (
+                          <li key={ index }>
+                            <input type="checkbox" id={ comId } className='mr-3' />
+                            <label htmlFor='comId'>{ task }</label>
+                          </li>
+                        )
+                      }) }
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
             </div>
           </aside>
         </article>
@@ -184,7 +307,7 @@ const ToDoList = () => {
                   <div className='bg-green-50 rounded-lg p-4 mb-2'>
                     <ul className="list-inside list-disc">
                       <article className='flex flex-col'>
-                        <li key={ index }>{ pro.title } </li>
+                        <li key={ index }>{ pro.title }ggg </li>
                         <li>
                           <span>{ pro.description }</span>
                         </li>

@@ -119,11 +119,7 @@ const AxiosFetch = () => {
                             <h2 className="text-5xl text-green-700 font-bold mb-3">Product Details Shown</h2>
                             <div className="table-responsive">
                                 { loading ? (
-                                    <tr key="">
-                                        <td colSpan={ 5 }>
-                                            <p>No Data Found</p>
-                                        </td>
-                                    </tr>
+                                    <p>...Loading</p>
                                 ) : (
                                     <table className=" table table-bordered">
                                         <thead>
@@ -145,7 +141,7 @@ const AxiosFetch = () => {
                                                         <td>{ pro.id }</td>
                                                         <td>{ pro.userId }</td>
                                                         <td>{ pro.title }</td>
-                                                        <td>{ pro.title }</td>
+                                                        <td>{ pro.body }</td>
                                                     </tr>
                                                 ))
                                             ) : (
@@ -201,7 +197,8 @@ const AxiosFetch = () => {
                                                                         <ul className='list-disc'>
                                                                             { Object.entries(post.reactions).map(([reactionType, count]) => (
                                                                                 <li key={ reactionType }>
-                                                                                    { reactionType.charAt(0).toUpperCase() + reactionType.slice(0) } { count }
+                                                                                    { reactionType.charAt(0).toUpperCase() + reactionType.slice(0) }
+                                                                                    { count }
                                                                                 </li>
                                                                             )) }
                                                                         </ul>
@@ -210,7 +207,8 @@ const AxiosFetch = () => {
                                                                         <ul className='list-disc'>
                                                                             { Object.keys(post.tags).map((el) => (
                                                                                 <li key={ el }>
-                                                                                    { typeof post.tags[el] == 'object' ? JSON.stringify(post.tags[el]) : post.tags[el] }
+                                                                                    { typeof post.tags[el] == 'object' ? JSON.stringify(post.tags[el]) :
+                                                                                        post.tags[el] }
                                                                                 </li>
                                                                             )) }
                                                                         </ul>

@@ -42,10 +42,11 @@ function Approutes() {
                 { path: 'reusecounter', element: (<Suspense fallback={ <div>...Loading</div> }><ReUseCounter /></Suspense>) },
                 { path: 'jsfunctions', element: (<Suspense fallback={ <div>...Loading</div> }><JsFunctions /></Suspense>) },
                 { path: 'postquery', element: (<Suspense fallback={ <div>...Loading</div> }><PostsQuery /></Suspense>) },
-                { path: 'custom', element: (<Suspense fallback={ <div>...Loading</div> }><CustomData /></Suspense>) }
+                { path: 'custom', element: (<Suspense fallback={ <div>...Loading</div> }><CustomData /></Suspense>) },
+                { path: '*', element: (<Suspense fallback={ <div>...Loading</div> }><NoDataFound /></Suspense>) }
             ]
         },
-        { path: '*', element: (<Suspense fallback={ <div>...Loading</div> }><NoDataFound /></Suspense>) }
+
     ])
 
     return (<Suspense fallback={ <div>...Loading</div> }><RouterProvider router={ router } /></Suspense>)

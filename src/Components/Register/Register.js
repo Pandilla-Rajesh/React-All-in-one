@@ -1,11 +1,9 @@
 import React from 'react'
 
-const Register=()=>{
+const Register = () => {
 
-    return(
-        <>
-            <h2>Welcome to Register Component</h2>
-        </>
+    return (
+        <h2>Welcome to the Register page</h2>
     )
 }
 

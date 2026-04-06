@@ -27,7 +27,7 @@ const Header = () => {
         <article>
             <section>
                 <nav className='bg-gray-900 text-white'>
-                    <div className='container-fluid mx-auto flex items-center justify-between px-3'>
+                    <div className='container mx-auto flex items-center justify-between px-3'>
                         <div className='xl:max-w-max'>
                             <Link className='text-2xl font-bold'>React AllinOne</Link>
                             {/* <a href="#" className='text-2xl font-bold'>React AllinOne</a> */ }
@@ -37,12 +37,12 @@ const Header = () => {
                                 className='text-gray-50 lg:hidden focus:outline-none'>
                                 { isOpen ? (
                                     <>
-                                        <i class="bi bi-list"></i>
+                                        <i className="bi bi-list"></i>
                                     </>
                                 ) :
                                     (
                                         <div className=' absolute right-0'>
-                                            <i class="bi bi-x-lg"></i>
+                                            <i className="bi bi-x-lg"></i>
                                         </div>
                                     ) }
                             </button>

@@ -17,11 +17,11 @@ const Parent = () => {
         <>
 
             <div className='grid grid-cols-1 w-full'>
-                <h1 className='text-3xl text-center text-slate-50'>Welcome to the Parent Componet</h1>
+                <h1 className='text-3xl text-center text-slate-50'>Welcome to the Props Componet</h1>
             </div>
 
             <div>
-                <Child detailUser={detailUser} />
+                <Child detailUser={ detailUser } />
             </div>
 
         </>

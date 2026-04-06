@@ -6,16 +6,16 @@ const ControlUncontrol = () => {
     const [search, setSearch] = useState('')
     const [loading, setLoading] = useState(false)
 
-    useEffect(() => {
-        setLoading(true)
-        fetch('https://jsonplaceholder.typicode.com/posts').then((res) => res.json())
-            .then((data) => {
-                console.log(data, 'fetch the data')
-            }).catch((err) => {
-                setLoading(false)
-                console.error('error fetch the data', err)
-            })
-    }, [])
+    // useEffect(() => {
+    //     setLoading(true)
+    //     fetch('https://jsonplaceholder.typicode.com/posts').then((res) => res.json())
+    //         .then((data) => {
+    //             console.log(data, 'fetch the data')
+    //         }).catch((err) => {
+    //             setLoading(false)
+    //             console.error('error fetch the data', err)
+    //         })
+    // }, [])
 
     const searchData = async () => {
         setLoading(false)

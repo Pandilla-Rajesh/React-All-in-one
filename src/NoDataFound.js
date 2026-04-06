@@ -1,7 +1,7 @@
 import React from 'react'
 
-const NoDataFound=()=>{
-    return(
+const NoDataFound = () => {
+    return (
         <>
             <section className='info-nodata vh-100'>
                 <article className=' container'>

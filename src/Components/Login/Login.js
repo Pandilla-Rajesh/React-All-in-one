@@ -97,7 +97,7 @@ const Login = () => {
                         <div className=' flex items-center justify-center flex-col'>
                            <div className='text-slate-50 text-7xl mb-3'><i class="bi bi-person-circle"></i></div>
                            <div className='w-full mb-4 rounded'>
-                              <h5 className='text-center text-white border-b-8 rounded bg-gradient-to-tr p-2
+                              <h5 className='text-center text-white border-b-8 rounde~d bg-gradient-to-tr p-2
                             from-red-600 to-red-900 pb-2 border-red-900 font-bold text-2xl'>Sign in</h5>
                            </div>
                         </div>
@@ -132,7 +132,7 @@ const Login = () => {
                               ${error.password ? 'border-red-500 ring ring-red-700' : 'border-gray-600'}` } />
                                        <span onClick={ toggleVisible }
                                           className=' absolute right-3 top-1/2 text-slate-50 cursor-pointer -translate-y-1/2'>
-                                          { showPassword ? <i class="bi bi-eye"></i> : <i class="bi bi-eye-slash"></i> }
+                                          { showPassword ? <i class="bi bi-eye text-dark"></i> : <i class="bi bi-eye-slash text-dark"></i> }
                                        </span>
                                     </div>
                                     <p>{ error.password && <small className='text-sm text-red-300'>{ error.password }</small> }</p>
