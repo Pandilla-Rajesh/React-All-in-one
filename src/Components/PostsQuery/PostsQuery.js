@@ -93,18 +93,34 @@ const PostsQuery = () => {
                         { editingId ? 'Edit Post' : 'Create New Post' }
                     </h2>
                     <div className='space-y-4'>
-                        <div>
-                            <label className='block text-gray-700 font-bold mb-2'>Title</label>
-                            <input
-                                type='text'
-                                name='title'
-                                value={ formData.title }
-                                onChange={ handleInputChange }
-                                placeholder='Enter post title'
-                                className='w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-violet-500'
-                            />
+
+                        <div className=' flex sm:flex-column gap-3 w-full'>
+                            <div className=' w-1/2'>
+                                <label className='block text-gray-700 font-bold mb-2'>Title</label>
+                                <input
+                                    type='text'
+                                    name='title'
+                                    value={ formData.title }
+                                    onChange={ handleInputChange }
+                                    placeholder='Enter post title'
+                                    className='w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-violet-500'
+                                />
+                            </div>
+
+                            <div className='w-1/2'>
+                                <label className='block text-gray-700 font-bold mb-2'>User ID</label>
+                                <input
+                                    type='number'
+                                    name='userId'
+                                    value={ formData.userId }
+                                    onChange={ handleInputChange }
+                                    placeholder='Enter Number'
+                                    className='w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-violet-500'
+                                />
+                            </div>
                         </div>
-                        <div>
+
+                        <div className='mb-2'>
                             <label className='block text-gray-700 font-bold mb-2'>Body</label>
                             <textarea
                                 name='body'
@@ -115,31 +131,24 @@ const PostsQuery = () => {
                                 className='w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-violet-500'
                             />
                         </div>
-                        <div>
-                            <label className='block text-gray-700 font-bold mb-2'>User ID</label>
-                            <input
-                                type='number'
-                                name='userId'
-                                value={ formData.userId }
-                                onChange={ handleInputChange }
-                                className='w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-violet-500'
-                            />
-                        </div>
-                        <div className='flex gap-2'>
-                            <button
-                                onClick={ editingId ? handleUpdatePost : handleCreatePost }
-                                className={ `flex-1 px-4 py-2 rounded-lg text-white font-bold transition ${editingId ? 'bg-blue-600 hover:bg-blue-700' : 'bg-green-600 hover:bg-green-700'}` }
-                            >
-                                { editingId ? 'Update Post' : 'Create Post' }
-                            </button>
-                            { editingId && (
+
+                        <div className='flex gap-2 justify-end'>
+                            <div>
                                 <button
-                                    onClick={ handleCancel }
-                                    className='flex-1 px-4 py-2 bg-gray-500 hover:bg-gray-600 text-white rounded-lg font-bold transition'
+                                    onClick={ editingId ? handleUpdatePost : handleCreatePost }
+                                    className={ `flex-1 px-4 py-2 rounded-lg text-white font-bold transition ${editingId ? 'bg-blue-600 hover:bg-blue-700' : 'bg-green-600 hover:bg-green-700'}` }
                                 >
-                                    Cancel
+                                    { editingId ? 'Update Post' : 'Create Post' }
                                 </button>
-                            ) }
+                                { editingId && (
+                                    <button
+                                        onClick={ handleCancel }
+                                        className='flex-1 px-4 py-2 bg-gray-500 hover:bg-gray-600 text-white rounded-lg font-bold transition'
+                                    >
+                                        Cancel
+                                    </button>
+                                ) }
+                            </div>
                         </div>
                     </div>
                 </div>
